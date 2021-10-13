@@ -3,4 +3,10 @@
 # Create docs in docs/
 #
 
-lazydocs --src-base-url="https://github.com/andgineer/aios3/blob/main/" src/aios3
+lazydocs \
+    --output-path="./docs" \
+    --overview-file="README.md" \
+    --src-base-url="https://github.com/andgineer/aios3/blob/master/" \
+    src/aios3
+
+mkdocs build

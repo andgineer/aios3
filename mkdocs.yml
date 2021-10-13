@@ -1,0 +1,6 @@
+site_name: aios3
+plugins:
+  - awesome-pages
+nav:
+    - Home: README.md
+theme: readthedocs

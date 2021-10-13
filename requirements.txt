@@ -5,3 +5,6 @@ mypy
 pytest
 pytest-asyncio
 pydocstyle
+mkdocs
+mkdocs-awesome-pages-plugin
+twine

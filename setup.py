@@ -17,10 +17,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/andgineer/aios3",
-    packages=setuptools.find_packages(exclude="tests"),
-    # package_dir={"": "src"},
-    include_package_data=True,
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="src"),
     install_requires=requirements,
+    python_requires=">=3.7",
     keywords="asyncio boto3 botocore s3 aws",
     classifiers=[
         "Programming Language :: Python :: 3",
