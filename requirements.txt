@@ -1,0 +1,7 @@
+aiobotocore
+lazydocs
+pylint
+mypy
+pytest
+pytest-asyncio
+pydocstyle
