@@ -1,6 +1,8 @@
 # aioS3
 
 [aiobotocore](https://aiobotocore.readthedocs.io/en/latest/) read large files in chunks.
+This is because in `get_object()['Body']` it returns a `FlowControlStreamReader.read` generator.
+
 So to read total file you have to create loop like that
 
 ```python
