@@ -29,6 +29,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: static checks
-      run: pre-commit run --verbose --all-files
+      run: |
+        if [ "$RUNNER_OS" != "Windows" ]; then  # pre-commit fail in Windows
+          pre-commit run --verbose --all-files
+        fi
     - name: Test with pytest
       run: pytest
