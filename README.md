@@ -1,3 +1,4 @@
+[![Build Status](https://github.com/andgineer/aios3/workflows/ci/badge.svg)](https://github.com/andgineer/aios3/actions)
 # Asyncio S3 file operations
 
 Wrap [aiobotocore](https://aiobotocore.readthedocs.io/en/latest/) to simplify reading of read large files.
