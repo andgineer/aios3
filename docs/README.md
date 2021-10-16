@@ -1,25 +1,31 @@
-<!-- markdownlint-disable -->
+# aioS3
 
-# API Overview
+[aiobotocore](https://aiobotocore.readthedocs.io/en/latest/) read large files in chunks.
+So to read total file you have to create loop like that
 
-## Modules
+```python
+resp = yield from s3.get_object(Bucket='mybucket', Key='k')
+stream = resp['Body']
+try:
+    chunk = yield from stream.read(10)
+    while len(chunk) > 0:
+      ...
+      chunk = yield from stream.read(10)
+finally:
+  stream.close()
+```
 
-- [`file`](./file.md#module-file): S3 "files" operations with aiobotocore.
-- [`stream_iter`](./stream_iter.md#module-stream_iter): Create file-like object from iterable/iterator.
-- [`version`](./version.md#module-version)
+This is kind of laborious if you do not want to use this chunks somehow (like process them chunk by chunk and
+get all advantages from async operations).
 
-## Classes
+In most cases you just want this file read.
 
-- [`stream_iter.StreamFromIter`](./stream_iter.md#class-streamfromiter): Stream bytes from iterable/iterator.
+And aioS3 does exactly that - it wrap aiobotcore operations with simple functions like `read()` that return
+full file content.
 
-## Functions
+But it can do more - there is `stream()` where you have simple file-like interface and in some cases can be more
+effective, if you do not read file as one piece.
 
-- [`file.chunks`](./file.md#function-chunks): Generate file chunks as they are returned by AWS.
-- [`file.read`](./file.md#function-read): Read the full content of the file as bytes.
-- [`file.save`](./file.md#function-save): Create the file with the `body`.
-- [`file.stream`](./file.md#function-stream): Create file-like object to stream the file content.
+# Documentation
 
-
----
-
-_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._
+[aioS3 API reference](api-reference/)

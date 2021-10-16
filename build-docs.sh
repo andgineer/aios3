@@ -4,7 +4,7 @@
 #
 
 lazydocs \
-    --output-path="./docs" \
+    --output-path="./docs/api-reference" \
     --overview-file="README.md" \
     --src-base-url="https://github.com/andgineer/aios3/blob/master/" \
     src/aios3
