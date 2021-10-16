@@ -8,3 +8,4 @@ pydocstyle
 mkdocs
 mkdocs-awesome-pages-plugin
 twine
+pre-commit
