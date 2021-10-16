@@ -11,6 +11,5 @@ docs_dir: docs
 plugins:
   - awesome-pages
   - search
-nav:
-    - Home: README.md
+
 theme: readthedocs
