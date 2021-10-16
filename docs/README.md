@@ -21,13 +21,17 @@ get all advantages from async operations).
 In most cases you just want this file read.
 
 And aioS3 does exactly that - it wrap aiobotcore operations with simple functions like
-[read()](api-reference/file.html#function-read) that return
+[read()](docstrings/file/#function-read) that return
 full file content.
 
-But it can do more - there is [stream()](api-reference/file.html#function-stream)
+But it can do more - there is [stream()](docstrings/file/#function-stream)
 where you have simple file-like interface and in some cases can be more
 effective, if you do not read file as one piece.
 
 # Documentation
 
-[aioS3 API reference](api-reference/)
+[aioS3 API reference](docstrings/)
+
+# source code
+
+[sorokin.engineer/aios3](https://github.com/andgineer/aios3)

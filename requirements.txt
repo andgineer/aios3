@@ -8,4 +8,3 @@ pydocstyle
 mkdocs
 mkdocs-awesome-pages-plugin
 twine
-mkdocs-material

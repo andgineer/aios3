@@ -8,6 +8,7 @@ like [read](https://andgineer.github.io/aios3/api-reference/file/#function-read)
 
 [aioS3](https://andgineer.github.io/aios3/)
 
-# source code
+#### note for myself
 
-[sorokin.engineer/aios3](https://github.com/andgineer/aios3)
+Do not forget to set git branch `gh-pages` as source for github pages.
+This branch auto-updated by `mkdocs gh-deploy` in github actions.
