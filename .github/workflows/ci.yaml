@@ -30,6 +30,6 @@ jobs:
         pip install -r requirements.txt
     - name: static checks
       run: pre-commit run --verbose --all-files
-      if: matrix.os = 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
     - name: Test with pytest
       run: pytest
