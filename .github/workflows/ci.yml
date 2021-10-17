@@ -29,10 +29,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python -m pip install -e .
-    - name: static checks
-      run: pre-commit run --verbose --all-files
-      if: | # we need this run only once
-        matrix.os == 'ubuntu-latest'
-        && matrix.python-version == '3.9'
     - name: Test with pytest
       run: pytest
