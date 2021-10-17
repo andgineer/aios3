@@ -6,7 +6,7 @@
 # Do not forget to set git branch `gh-pages` as source for github pages.
 # This branch auto-updated by `mkdocs gh-deploy`
 #
-name: docs
+name: static source code checks
 on:
   push:
     branches:
