@@ -4,14 +4,13 @@ pytest fixture configurations
 import os
 import random
 import string
-from typing import List
 from unittest.mock import patch
 
 import aiobotocore
 import botocore.stub
 import pytest
 
-MAX_FILE_CHUNK_LENGTH = 16
+MAX_FILE_LENGTH = 16
 MAX_FILE_CHUNK_NUMBER = 4
 S3_NAME_ALPHABET = string.ascii_letters + string.digits + "-_"
 FILE_BODY_ALPHABET = (string.ascii_letters + string.digits + "-_").encode()
@@ -32,19 +31,17 @@ async def s3_stub() -> botocore.stub.Stubber:
 
 
 @pytest.fixture(scope="function")
-def file_chunks() -> List[bytes]:
-    result = []
-    chunks_num = random.randint(0, MAX_FILE_CHUNK_NUMBER)
-    for chunk in range(chunks_num):
-        result.append(
-            b"".join(
-                random.choice(FILE_BODY_ALPHABET).to_bytes(1, "big")
-                for _ in range(
-                    random.randint(1, MAX_FILE_CHUNK_LENGTH)
-                )  # chunk cannot be 0 length because that means EOF
-            )
-        )
-    return result
+def file_content() -> bytes:
+    return b""
+    return b"".join(
+        random.choice(FILE_BODY_ALPHABET).to_bytes(1, "big")
+        for _ in range(random.randint(0, MAX_FILE_LENGTH))
+    )
+
+
+@pytest.fixture(scope="function")
+def chunk_size() -> int:
+    return random.randint(1, MAX_FILE_LENGTH)
 
 
 @pytest.fixture(scope="function")

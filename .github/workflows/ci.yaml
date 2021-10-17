@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
+#
 name: ci
 
 on:
@@ -30,6 +30,8 @@ jobs:
         pip install -r requirements.txt
     - name: static checks
       run: pre-commit run --verbose --all-files
-      if: matrix.os == 'ubuntu-latest'
+      if: | # we need this run only once
+        matrix.os == 'ubuntu-latest'
+        && matrix.python-version == '3.9'
     - name: Test with pytest
       run: pytest

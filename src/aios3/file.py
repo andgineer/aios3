@@ -27,29 +27,31 @@ async def save(  # pylint: disable= invalid-name
 
 
 async def read(  # pylint: disable= invalid-name
-    bucket: str, key: str, s3: Optional[AioBaseClient] = None
+    bucket: str, key: str, amt: Optional[int] = None, s3: Optional[AioBaseClient] = None
 ) -> bytes:
     """Read the full content of the file as bytes.
 
     Args:
         bucket: S3 bucket.
         key: path in the bucket including "file name".
+        amt: max number of bytes to read in one chunk. by default read all.
         s3: boto s3 client. by default it auto-created inside the function.
 
     Return:
         The file content as bytes.
     """
-    return b"".join([chunk async for chunk in chunks(bucket=bucket, key=key, s3=s3)])
+    return b"".join([chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)])
 
 
 async def chunks(  # pylint: disable= invalid-name
-    bucket: str, key: str, s3: Optional[AioBaseClient] = None
+    bucket: str, key: str, amt: Optional[int] = None, s3: Optional[AioBaseClient] = None
 ) -> AsyncGenerator[bytearray, None]:
-    """Generate file chunks as they are returned by AWS.
+    """Generate file chunks `amt` bytes max.
 
     Args:
         bucket: S3 bucket.
         key: path in the bucket including "file name".
+        amt: max number of bytes to read in one chunk. by default read file as one chunk.
         s3: boto s3 client. by default it auto-created inside the function.
 
     Return:
@@ -64,7 +66,7 @@ async def chunks(  # pylint: disable= invalid-name
         chunks_count = 0
         try:
             while True:
-                chunk = await s3_file_stream.read()
+                chunk = await s3_file_stream.read(amt)
                 chunks_count += 1
                 if len(chunk) == 0:
                     break
@@ -74,17 +76,18 @@ async def chunks(  # pylint: disable= invalid-name
 
 
 async def stream(  # pylint: disable= invalid-name
-    bucket: str, key: str, s3: Optional[AioBaseClient] = None
+    bucket: str, key: str, amt: Optional[int] = None, s3: Optional[AioBaseClient] = None
 ) -> IO[bytes]:
     """Create file-like object to stream the file content.
 
     Args:
         bucket: S3 bucket.
         key: path in the bucket including "file name".
+        amt: max number of bytes to read in one chunk. by default read file as one chunk.
         s3: boto s3 client. by default it auto-created inside the function.
 
     Return:
         Python file stream with the file content.
     """
-    file_chunks = [chunk async for chunk in chunks(bucket=bucket, key=key, s3=s3)]
+    file_chunks = [chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)]
     return io.BufferedReader(StreamFromIter(file_chunks))
