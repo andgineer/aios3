@@ -138,3 +138,17 @@ async def test_aios3_file_stream_default_chunk_size(
             key=key,
         )
     ).read() == file_content
+
+
+@pytest.mark.asyncio
+async def test_aios3_file_read_zero_length(
+    s3_stub: botocore.stub.Stubber, bucket, s3_file_name, s3_folder, chunk_size
+):
+    file_content = b""
+    key = os.path.join(s3_folder, s3_file_name)
+    s3_stub.add_response(
+        "get_object",
+        {"Body": Stream(file_content)},
+        expected_params={"Bucket": bucket, "Key": key},
+    )
+    assert await read(s3=s3_stub.client, bucket=bucket, key=key, amt=chunk_size) == file_content

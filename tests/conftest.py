@@ -32,7 +32,6 @@ async def s3_stub() -> botocore.stub.Stubber:
 
 @pytest.fixture(scope="function")
 def file_content() -> bytes:
-    return b""
     return b"".join(
         random.choice(FILE_BODY_ALPHABET).to_bytes(1, "big")
         for _ in range(random.randint(0, MAX_FILE_LENGTH))
