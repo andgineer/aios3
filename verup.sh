@@ -2,7 +2,7 @@
 # Increments version git tag
 # Saves it into VERSION_FILE
 
-VERSION_FILES=("src/version.py")
+VERSION_FILES=("src/aios3/version.py")
 
 TAG=$(git describe --tags)
 
