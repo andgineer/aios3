@@ -3,7 +3,7 @@
 # Put you pypi credentials (PYPI_USERNAME, PYPI_PASSWORD) into the github repository secrets
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
 
-name: Upload Python Package
+name: Publish Python PIP Package on pypi and create github release
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - 'v*.*.*'
 
 jobs:
-  deploy:
+  publish:
 
     runs-on: ubuntu-latest
 

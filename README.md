@@ -24,4 +24,4 @@ It brings:
 - pytest with examples of async tests and fixtures (see `tests/`)
 - github actions to linter, test and to create github pages (see `.github/workflows/`)
 - versions in git tags (see `verup.sh`)
-- publishing Python package on pypi (see `upload.sh`)
+- publishing Python PIP package [read the article](https://sorokin.engineer/posts/en/github-actions-release-pypi-python-package.html), automatically on git tag, also creates github release with link to the version on pypi.org
