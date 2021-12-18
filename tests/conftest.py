@@ -23,7 +23,7 @@ S3_FILE_NAME_LENGTH = 12
 async def s3_stub() -> botocore.stub.Stubber:
     # to test aiobotocore we cannot use moto
     with patch.dict(os.environ, {"AWS_ACCESS_KEY_ID": "fake", "AWS_SECRET_ACCESS_KEY": "fake"}):
-        session = aiobotocore.get_session()
+        session = aiobotocore.session.get_session()
         async with session.create_client("s3") as stubbed_client:
             with botocore.stub.Stubber(stubbed_client) as stubber:
                 yield stubber
