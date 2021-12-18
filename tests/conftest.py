@@ -7,6 +7,7 @@ import string
 from unittest.mock import patch
 
 import aiobotocore
+import aiobotocore.session
 import botocore.stub
 import pytest
 
