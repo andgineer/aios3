@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: 3.x
       - run: |
-          pip install -r requirements.txt
+          pip install -r requirements.dev.txt
           python -m pip install -e .
       - run: ./build-docs.sh
       - run: mkdocs gh-deploy --force

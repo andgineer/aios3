@@ -6,6 +6,9 @@ with open("README.md", "r") as fh:
 with open("requirements.txt") as f:
     requirements = f.read().splitlines()
 
+with open("requirements.dev.txt") as f:
+    tests_requirements = f.read().splitlines()
+
 from src.aios3 import version
 
 setuptools.setup(
@@ -20,6 +23,7 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     install_requires=requirements,
+    tests_require=tests_requirements,
     python_requires=">=3.7",
     keywords="asyncio boto3 botocore s3 aws",
     classifiers=[

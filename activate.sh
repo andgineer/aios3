@@ -25,10 +25,13 @@ fi
 if [[ ! -d ${VENV_FOLDER} ]] ; then
     echo -e $CYAN"Creating virtual environment for python in ${VENV_FOLDER}"$NC
     if virtualenv ${VENV_FOLDER} --python=${PYTHON}; then
+      echo -e $CYAN"creating VENV.."$NC
       python -m venv  ${VENV_FOLDER}
       . ${VENV_FOLDER}/bin/activate
+      echo -e $CYAN"installing development dependencies.."$NC
       python -m pip install --upgrade pip
-      python -m pip install -r requirements.txt
+      python -m pip install -r requirements.dev.txt
+      echo -e $CYAN"installing the package in developer mode.."$NC
       python -m pip install -e .
     else
       echo -e $RED"Error to create virtual env. Do you have virtualenv installed?"$NC
@@ -37,4 +40,11 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
 else
     echo -e $CYAN"Activating virtual environment ..."$NC
     . ${VENV_FOLDER}/bin/activate
+fi
+
+if type conda 2>/dev/null; then
+  echo -e $CYAN"deactivate conda for pure pip VENV.."$NC
+  conda deactivate  # removing all stack if we activated conda for a number of times
+  conda deactivate
+  conda deactivate
 fi

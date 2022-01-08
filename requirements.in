@@ -1,0 +1,2 @@
+# dependencies list to build requirements.txt with pip-compile (from pip-tools package)
+aiobotocore
