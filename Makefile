@@ -1,0 +1,16 @@
+#!make
+VERSION := $(shell cat src/aios3/version.py | cut -d= -f2 | sed 's/\"//g; s/ //')
+export VERSION
+
+version:
+	echo ${VERSION}
+
+ver-bug:
+	bash ./scripts/verup.sh bug
+
+ver-feature:
+	bash ./scripts/verup.sh feature
+
+ver-release:
+	bash ./scripts/verup.sh release
+
