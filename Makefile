@@ -14,3 +14,5 @@ ver-feature:
 ver-release:
 	bash ./scripts/verup.sh release
 
+reqs:
+	bash ./scripts/compile_requirements.sh
