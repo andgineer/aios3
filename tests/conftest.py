@@ -10,6 +10,7 @@ import aiobotocore
 import aiobotocore.session
 import botocore.stub
 import pytest
+import pytest_asyncio
 
 MAX_FILE_LENGTH = 16
 MAX_FILE_CHUNK_NUMBER = 4
@@ -20,7 +21,7 @@ S3_FILE_FOLDER_LENGTH = 12
 S3_FILE_NAME_LENGTH = 12
 
 
-@pytest.fixture(scope="function")
+@pytest_asyncio.fixture(scope="function")
 async def s3_stub() -> botocore.stub.Stubber:
     # to test aiobotocore we cannot use moto
     with patch.dict(os.environ, {"AWS_ACCESS_KEY_ID": "fake", "AWS_SECRET_ACCESS_KEY": "fake"}):
