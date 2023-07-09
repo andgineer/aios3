@@ -11,3 +11,5 @@ twine
 pre-commit
 pip-tools
 black
+pytest-cov
+coveralls
