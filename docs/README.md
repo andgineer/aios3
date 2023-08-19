@@ -30,4 +30,4 @@ With aioS3 [stream()](docstrings/file/#function-stream) you have file-like inter
 
 # source code
 
-[sorokin.engineer/aios3](https://github.com/andgineer/aios3)
+[andgineer/aios3](https://github.com/andgineer/aios3)
