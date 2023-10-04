@@ -26,3 +26,6 @@ It brings:
 - versions in git tags (see `verup.sh`)
 - publishing Python PIP package [read the article](https://sorokin.engineer/posts/en/github-actions-release-pypi-python-package.html), automatically on git tag, also creates github release with link to the version on pypi.org
 - pinning dependencies versions using [pip-tools](https://github.com/jazzband/pip-tools/) (see `scripts/compile_requirements.sh`)
+
+# Scripts
+    make help
