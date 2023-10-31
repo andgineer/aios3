@@ -9,3 +9,5 @@ pre-commit
 pip-tools
 pytest-cov
 coveralls
+mypy
+pylint
