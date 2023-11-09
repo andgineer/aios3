@@ -6,7 +6,9 @@ REQUIREMENTS_FILE_NAME = "requirements.txt"
 
 
 with open(REQUIREMENTS_FILE_NAME, "r", encoding="utf8") as f:
-    requirements = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+    requirements = [
+        line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
+    ]
 print(
     f"From {REQUIREMENTS_FILE_NAME} read requirements:"
     f"\n{requirements[:10]}...\n{len(requirements)} total"
