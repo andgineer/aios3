@@ -1,5 +1,5 @@
 #!make
-VERSION := $(shell cat src/aios3/version.py | cut -d= -f2 | sed 's/\"//g; s/ //')
+VERSION := $(shell grep '__version__' src/aios3/__about__.py | cut -d= -f2 | sed 's/\"//g; s/ //')
 export VERSION
 
 .HELP: version ## Show the current version

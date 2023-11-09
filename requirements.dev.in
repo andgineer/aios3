@@ -1,13 +1,21 @@
 # dependencies list to build requirements.dev.txt with pip-compile (from pip-tools package)
+# docs
 lazydocs
-pytest
-pytest-asyncio
 mkdocs
 mkdocs-awesome-pages-plugin
-twine
-pre-commit
-pip-tools
+
+# test
+pytest
+pytest-asyncio
 pytest-cov
 coveralls
+
+# lint
+pre-commit
 mypy
 pylint
+
+# build
+pip-tools
+hatchling
+toml
