@@ -5,6 +5,7 @@ docs/docstrings
 __pycache__/
 *.py[cod]
 *$py.class
+*.py-e
 
 # C extensions
 *.so
@@ -28,6 +29,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+pytest.xml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
