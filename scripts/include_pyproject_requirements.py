@@ -1,28 +1,61 @@
+#!/usr/bin/env python3
 """Include requirements.txt in pyproject.toml project.dependencies array."""
+import argparse
+
 import toml
 
 PROJECT_METADATA_FILE_NAME = "pyproject.toml"
 REQUIREMENTS_FILE_NAME = "requirements.txt"
 
 
-with open(REQUIREMENTS_FILE_NAME, "r", encoding="utf8") as f:
-    requirements = [
-        line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
-    ]
-print(
-    f"From {REQUIREMENTS_FILE_NAME} read requirements:"
-    f"\n{requirements[:10]}...\n{len(requirements)} total"
-)
+def main(requirements_file_name: str, section_path: str) -> None:
+    """Include requirements.txt in pyproject.toml project.dependencies array."""
+    with open(requirements_file_name, "r", encoding="utf8") as f:
+        requirements = [
+            line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
+        ]
+    print(
+        f"From {requirements_file_name} read requirements:"
+        f"\n{requirements[:10]}...\n...{len(requirements)} total"
+    )
 
-with open(PROJECT_METADATA_FILE_NAME, "r", encoding="utf8") as f:
-    pyproject_data = toml.load(f)
+    with open(PROJECT_METADATA_FILE_NAME, "r", encoding="utf8") as f:
+        pyproject_data = toml.load(f)
 
-print(
-    f"Updating project {pyproject_data['project']['name']} project.dependencies array"
-    f" in {PROJECT_METADATA_FILE_NAME}"
-)
+    section_keys = section_path.split(".")
+    target_section = pyproject_data
+    for key in section_keys:
+        target_section = target_section[key]
 
-pyproject_data["project"]["dependencies"] = requirements
+    print(
+        f"To section `{section_path}` array `dependencies`"
+        f" of `{PROJECT_METADATA_FILE_NAME}`, project `{pyproject_data['project']['name']}`.\n"
+    )
+    target_section["dependencies"] = requirements
 
-with open(PROJECT_METADATA_FILE_NAME, "w", encoding="utf8") as f:
-    toml.dump(pyproject_data, f)
+    with open(PROJECT_METADATA_FILE_NAME, "w", encoding="utf8") as f:
+        toml.dump(pyproject_data, f)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter,
+        description="""Include dependencies from `requirements_file` into array `dependencies` of pyproject.toml's section specified in `section_path`.
+
+By default includes requirements.txt into `dependencies` array of section `project`.""",
+    )
+    parser.add_argument(
+        "requirements_file",
+        nargs="?",
+        default=REQUIREMENTS_FILE_NAME,
+        help="Input file with dependencies",
+    )
+    parser.add_argument(
+        "section_path",
+        nargs="?",
+        default="project",
+        help="Path to the section in pyproject.toml (e.g., tool.hatch.envs.test)",
+    )
+
+    args = parser.parse_args()
+    main(requirements_file_name=args.requirements_file, section_path=args.section_path)
