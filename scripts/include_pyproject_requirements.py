@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Include requirements.txt in pyproject.toml project.dependencies array."""
+"""Include requirements.txt in pyproject.toml project.dependencies array.
+
+Author: Andrey Sorokin
+email: andrey@sorokin.engineer
+url: https://github.com/andgineer
+License: MIT
+"""
 import argparse
 
 import toml
@@ -40,7 +46,8 @@ def main(requirements_file_name: str, section_path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawTextHelpFormatter,
-        description="""Include dependencies from `requirements_file` into array `dependencies` of pyproject.toml's section specified in `section_path`.
+        description="""Include dependencies from `requirements_file` into array `dependencies`
+of pyproject.toml's section specified in `section_path`.
 
 By default includes requirements.txt into `dependencies` array of section `project`.""",
     )
