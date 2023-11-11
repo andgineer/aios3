@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/andgineer/aios3/workflows/ci/badge.svg)](https://github.com/andgineer/aios3/actions)
+[![Coverage](https://raw.githubusercontent.com/andgineer/aios3/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/aios3/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # File-like object for aiobotocore
 
 With [stream](https://andgineer.github.io/aios3/docstrings/file/#function-stream) you can create file-like object
@@ -29,3 +30,6 @@ It brings:
 
 # Scripts
     make help
+
+# Codecov
+[Report](https://app.codecov.io/gh/andgineer/ellipsize/tree/master/src%2Faios3)
