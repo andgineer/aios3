@@ -32,4 +32,4 @@ It brings:
     make help
 
 # Codecov
-[Report](https://app.codecov.io/gh/andgineer/ellipsize/tree/master/src%2Faios3)
+[Report](https://app.codecov.io/gh/andgineer/aios3/tree/master/src%2Faios3)
