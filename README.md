@@ -31,5 +31,6 @@ It brings:
 # Scripts
     make help
 
-# Codecov
-[Report](https://app.codecov.io/gh/andgineer/aios3/tree/master/src%2Faios3)
+## Coverage report
+* [Codecov](https://app.codecov.io/gh/andgineer/aios3/tree/master/src%2Faios3)
+* [Coveralls](https://coveralls.io/github/andgineer/aios3)
