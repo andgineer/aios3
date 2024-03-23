@@ -12,16 +12,23 @@ on:
     branches:
       - main
       - master
+
+permissions:
+  contents: write
+
 jobs:
   deploy:
+    env:
+      PRIMARY_PYTHON_VERSION: '3.11'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
       - run: |
-          pip install -r requirements.dev.txt
-          python -m pip install -e .
-      - run: scripts/build-docs.sh
-      - run: mkdocs gh-deploy --force
+          pip install uv
+          uv pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+      - run: ./scripts/build-docs.sh
+      - run: |
+          ghp-import --no-jekyll --push --force site

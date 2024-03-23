@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: aios3
+site_url: https://andgineer.github.io/aios3
+site_author: Andrey Sorokin
+
+# Repository
+repo_name: aios3
+repo_url: https://github.com/andgineer/aios3
+edit_uri: edit/master/docs
+docs_dir: 'src/LANGUAGE'
+site_dir: '../site/SITE_PREFIX'
+
+plugins:
+  - awesome-pages
+  - search:
+      lang: LANGUAGE
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ ../src ]
+          options:
+            allow_inspection: false
+            show_bases: true
+            heading_level: 2
+            show_root_heading: true
+            show_source: false
+            show_csource_code: true
+            show_root_members_full_path: false
+            show_object_full_path: true
+            show_category_heading: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            docstring_style: numpy
+            filters:
+              - "!^_"
+            show_signature: true
+            separate_signature: true
+            show_signature_annotations: true
+            signature_crossrefs: true
+            docstring_section_style: table
+            group_by_category: true
+            show_if_no_docstring: true
+            annotations_path: brief
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: 'docs'
+
+theme:
+  name: material
+  features:
+    - toc.integrate
+    - navigation.tracking
+    - content.code.copy
+
+extra:
+  alternate:
+    - name: English
+      link: /aios3/
+      lang: en
+    - name: Русский
+      link: /aios3/ru/
+      lang: ru

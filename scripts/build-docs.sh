@@ -3,10 +3,10 @@
 # Create docs in docs/
 #
 
-lazydocs \
-    --output-path="./docs/docstrings" \
-    --overview-file="README.md" \
-    --src-base-url="https://github.com/andgineer/aios3/blob/master/" \
-    src/aios3
+./scripts/docstrings.sh
 
-mkdocs build
+for lang in en ru; do  # en should be the first language as it clears the root of the site
+    scripts/docs-render-config.sh $lang
+    mkdocs build --dirty --config-file docs/_mkdocs.yml
+    rm docs/_mkdocs.yml
+done

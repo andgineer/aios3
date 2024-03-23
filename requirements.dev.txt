@@ -15,6 +15,8 @@ async-timeout==4.0.3
     # via aiohttp
 attrs==23.1.0
     # via aiohttp
+babel==2.14.0
+    # via mkdocs-material
 botocore==1.31.64
     # via aiobotocore
 bracex==2.4
@@ -30,7 +32,11 @@ charset-normalizer==3.3.2
 click==8.1.7
     # via
     #   mkdocs
-    #   typer
+    #   mkdocstrings
+colorama==0.4.6
+    # via
+    #   griffe
+    #   mkdocs-material
 coverage==6.5.0
     # via
     #   coveralls
@@ -52,6 +58,8 @@ frozenlist==1.4.0
     #   aiosignal
 ghp-import==2.1.0
     # via mkdocs
+griffe==0.42.1
+    # via mkdocstrings-python
 hatchling==1.18.0
 identify==2.5.31
     # via pre-commit
@@ -64,26 +72,50 @@ iniconfig==2.0.0
 isort==5.12.0
     # via pylint
 jinja2==3.1.2
-    # via mkdocs
+    # via
+    #   mkdocs
+    #   mkdocs-material
+    #   mkdocstrings
 jmespath==1.0.1
     # via botocore
-lazydocs==0.4.8
 markdown==3.5.1
-    # via mkdocs
+    # via
+    #   mkdocs
+    #   mkdocs-autorefs
+    #   mkdocs-material
+    #   mkdocstrings
+    #   mkdocstrings-python
+    #   pymdown-extensions
 markupsafe==2.1.3
     # via
     #   jinja2
     #   mkdocs
+    #   mkdocs-autorefs
+    #   mkdocstrings
 mccabe==0.7.0
     # via pylint
 mergedeep==1.3.4
     # via mkdocs
 mkdocs==1.5.3
-    # via mkdocs-awesome-pages-plugin
+    # via
+    #   mkdocs-autorefs
+    #   mkdocs-awesome-pages-plugin
+    #   mkdocs-material
+    #   mkdocstrings
+mkdocs-autorefs==1.0.1
+    # via mkdocstrings
 mkdocs-awesome-pages-plugin==2.9.2
+mkdocs-material==9.5.15
+mkdocs-material-extensions==1.3.1
+    # via mkdocs-material
+mkdocstrings==0.24.1
+    # via mkdocstrings-python
+mkdocstrings-python==1.9.0
+    # via mkdocstrings
 multidict==6.0.5
     # via
     #   aiohttp
+    #   aios3
     #   yarl
 mypy==1.6.1
 mypy-extensions==1.0.0
@@ -97,6 +129,8 @@ packaging==23.2
     #   hatchling
     #   mkdocs
     #   pytest
+paginate==0.5.6
+    # via mkdocs-material
 pathspec==0.11.2
     # via
     #   hatchling
@@ -104,6 +138,7 @@ pathspec==0.11.2
 platformdirs==3.11.0
     # via
     #   mkdocs
+    #   mkdocstrings
     #   pylint
     #   virtualenv
 pluggy==1.3.0
@@ -111,7 +146,13 @@ pluggy==1.3.0
     #   hatchling
     #   pytest
 pre-commit==3.5.0
+pygments==2.17.2
+    # via mkdocs-material
 pylint==3.0.2
+pymdown-extensions==10.7.1
+    # via
+    #   mkdocs-material
+    #   mkdocstrings
 pytest==7.4.3
     # via
     #   pytest-asyncio
@@ -126,11 +167,16 @@ pyyaml==6.0.1
     # via
     #   mkdocs
     #   pre-commit
+    #   pymdown-extensions
     #   pyyaml-env-tag
 pyyaml-env-tag==0.1
     # via mkdocs
+regex==2023.12.25
+    # via mkdocs-material
 requests==2.31.0
-    # via coveralls
+    # via
+    #   coveralls
+    #   mkdocs-material
 setuptools==69.2.0
     # via nodeenv
 six==1.16.0
@@ -140,12 +186,8 @@ tomlkit==0.12.2
     # via pylint
 trove-classifiers==2023.11.7
     # via hatchling
-typer==0.9.0
-    # via lazydocs
 typing-extensions==4.8.0
-    # via
-    #   mypy
-    #   typer
+    # via mypy
 urllib3==2.0.7
     # via
     #   botocore

@@ -2,8 +2,9 @@
 -r requirements.txt
 
 # docs
-lazydocs
-mkdocs
+mkdocstrings[python]
+mkdocs-material
+pymdown-extensions
 mkdocs-awesome-pages-plugin
 
 # test
