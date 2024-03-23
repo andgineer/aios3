@@ -2,33 +2,39 @@
 # To publish new version use `scripts/verup.sh`
 # Put you pypi credentials (PYPI_USERNAME, PYPI_PASSWORD) into the github repository secrets
 
-name: Publish Python PIP Package on pypi and create github release
+name: Upload Python Package
 
 on:
   push:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
   publish:
-
+    env:
+      PRIMARY_PYTHON_VERSION: '3.11'
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+
     - name: Set version var
       run: |
         echo "RELEASE_VERSION=$(echo ${GITHUB_REF#refs/*/} | sed 's/^v//')" >> $GITHUB_ENV
         echo $RELEASE_VERSION
 
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
-    - name: Install dependencies
+        python-version: '3.x'
+
+    - name: Install build dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install build
+        python -m pip install --upgrade pip uv
+        uv pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
 
     - name: Build package
       run: |

@@ -1,4 +1,5 @@
 """Create file-like object from iterable/iterator."""
+
 import io
 from array import array
 from typing import Iterable, Iterator, Optional, Union
@@ -59,7 +60,10 @@ class StreamFromIter(io.RawIOBase):
         try:
             max_bytes_in_result = len(allocated_buffer)
             chunk = self.leftover or next(self.iterator)
-            output, self.leftover = chunk[:max_bytes_in_result], chunk[max_bytes_in_result:]
+            output, self.leftover = (
+                chunk[:max_bytes_in_result],
+                chunk[max_bytes_in_result:],
+            )
             allocated_buffer[: len(output)] = output  # type: ignore
             return len(output)
         except StopIteration:

@@ -1,4 +1,6 @@
-# dependencies list to build requirements.dev.txt with pip-compile (from pip-tools package)
+# dependencies list to build requirements.dev.txt
+-r requirements.txt
+
 # docs
 lazydocs
 mkdocs
@@ -16,6 +18,6 @@ mypy
 pylint
 
 # build
-pip-tools
+-e .
 hatchling
 toml

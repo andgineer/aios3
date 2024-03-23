@@ -1,4 +1,5 @@
 """S3 "files" operations with aiobotocore."""
+
 import contextlib
 import io
 from typing import IO, AsyncGenerator, Optional
@@ -40,7 +41,9 @@ async def read(  # pylint: disable= invalid-name
     Return:
         The file content as bytes.
     """
-    return b"".join([chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)])
+    return b"".join(
+        [chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)]
+    )
 
 
 async def chunks(  # pylint: disable= invalid-name
@@ -89,5 +92,7 @@ async def stream(  # pylint: disable= invalid-name
     Return:
         Python file stream with the file content.
     """
-    file_chunks = [chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)]
+    file_chunks = [
+        chunk async for chunk in chunks(bucket=bucket, key=key, amt=amt, s3=s3)
+    ]
     return io.BufferedReader(StreamFromIter(file_chunks))

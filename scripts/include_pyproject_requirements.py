@@ -6,6 +6,7 @@ email: andrey@sorokin.engineer
 url: https://github.com/andgineer
 License: MIT
 """
+
 import argparse
 
 import toml
@@ -18,7 +19,9 @@ def main(requirements_file_name: str, section_path: str) -> None:
     """Include requirements.txt in pyproject.toml project.dependencies array."""
     with open(requirements_file_name, "r", encoding="utf8") as f:
         requirements = [
-            line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
+            line.strip()
+            for line in f
+            if line.strip() and not line.lstrip().startswith("#")
         ]
     print(
         f"From {requirements_file_name} read requirements:"

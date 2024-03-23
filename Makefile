@@ -22,8 +22,7 @@ ver-release:
 reqs:
 	pre-commit autoupdate
 	bash ./scripts/compile_requirements.sh
-	pip install -r requirements.txt
-	pip install -r requirements.dev.txt
+	uv pip install -r requirements.dev.txt
 
 .HELP: help  ## Display this message
 help:
