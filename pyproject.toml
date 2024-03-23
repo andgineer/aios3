@@ -8,8 +8,8 @@ description = "Wrapper for aiobotocore to simplify reading of large files"
 readme = "README.md"
 keywords = [ "asyncio", "boto3", "botocore", "s3", "aws",]
 classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
-requires-python = ">=3.8"
-dependencies = [ "aiobotocore",]
+requires-python = ">=3.10"
+dependencies = [ "aiobotocore", "multidict>=6.0.5",]
 dynamic = [ "version",]
 [[project.authors]]
 name = "Andrey Sorokin"

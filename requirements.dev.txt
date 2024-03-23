@@ -81,7 +81,7 @@ mergedeep==1.3.4
 mkdocs==1.5.3
     # via mkdocs-awesome-pages-plugin
 mkdocs-awesome-pages-plugin==2.9.2
-multidict==6.0.4
+multidict==6.0.5
     # via
     #   aiohttp
     #   yarl
