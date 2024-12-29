@@ -45,7 +45,7 @@ jobs:
     - name: Install uv environment
       uses: andgineer/uv-venv@v1
     - name: Install dependencies
-      run: uv pip install -r requirements.dev.txt
+      run: uv pip install -r pyproject.toml --all-extra
 
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}

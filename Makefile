@@ -21,8 +21,7 @@ ver-release:
 .HELP: reqs  ## Upgrade requirements including pre-commit
 reqs:
 	pre-commit autoupdate
-	bash ./scripts/compile_requirements.sh
-	uv pip install -r requirements.dev.txt
+	uv lock --upgrade
 
 .PHONY: docs # mark as phony so it always runs even we have a docs folder
 .HELP: docs  ## Docs preview English

@@ -31,7 +31,7 @@ jobs:
         uses: andgineer/uv-venv@v1
 
       - run: |
-          uv pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+          uv pip install ghp-import -r pyproject.toml --all-extra
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site

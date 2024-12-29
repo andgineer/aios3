@@ -33,3 +33,22 @@ include = [ "README.md", "LICENSE.txt",]
 
 [tool.hatch.version]
 path = "src/aios3/__about__.py"
+
+[tool.uv]
+dev-dependencies = [
+    "mkdocstrings[python]",
+    "mkdocs-material",
+    "pymdown-extensions",
+    "mkdocs-awesome-pages-plugin",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "coveralls",
+    "pre-commit",
+    "mypy",
+    "pylint",
+    "hatchling>=1.27.0",
+]
+
+[tool.uv.sources]
+aios3 = { workspace = true }
