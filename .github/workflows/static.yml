@@ -24,5 +24,5 @@ jobs:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
       - uses: andgineer/uv-venv@v1
       - run: |
-          uv pip install -r pyproject.toml --all-extra
+          uv pip install -r pyproject.toml --all-extras
           pre-commit run --verbose --all-files
