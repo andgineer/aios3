@@ -34,7 +34,9 @@ jobs:
       uses: andgineer/uv-venv@v1
 
     - name: Build package
-      run: uv build
+      run: |
+        uv sync --frozen
+        uv build
 
     - name: Publish to PyPI
       if: startsWith(github.ref, 'refs/tags/v')

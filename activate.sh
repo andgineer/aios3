@@ -30,7 +30,7 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
       START_TIME=$(date +%s)
 
       . ${VENV_FOLDER}/bin/activate
-      uv pip install -r pyproject.toml --all-extras
+      uv sync --frozen
 
       END_TIME=$(date +%s)
       echo "Environment created in $((END_TIME - $START_TIME)) seconds"
