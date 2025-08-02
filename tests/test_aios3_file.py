@@ -46,7 +46,7 @@ async def test_aios3_file_chunks(
         expected_params={"Bucket": bucket, "Key": key},
     )
     assert [
-        chunk async for chunk in chunks(s3=s3_stub.client, bucket=bucket, key=key, amt=chunk_size)
+        chunk async for chunk in chunks(s3=s3_stub.client, bucket=bucket, key=key, chunk_size=chunk_size)
     ] == [
         file_content[chunk_idx : chunk_idx + chunk_size]
         for chunk_idx in range(0, len(file_content), chunk_size)
@@ -64,7 +64,7 @@ async def test_aios3_file_stream(
         expected_params={"Bucket": bucket, "Key": key},
     )
     assert (
-        await stream(s3=s3_stub.client, bucket=bucket, key=key, amt=chunk_size)
+        await stream(s3=s3_stub.client, bucket=bucket, key=key, chunk_size=chunk_size)
     ).read() == file_content
 
 
@@ -149,4 +149,4 @@ async def check_reading(bucket, chunk_size, file_content, s3_file_name, s3_folde
         {"Body": Stream(file_content)},
         expected_params={"Bucket": bucket, "Key": key},
     )
-    assert await read(s3=s3_stub.client, bucket=bucket, key=key, amt=chunk_size) == file_content
+    assert await read(s3=s3_stub.client, bucket=bucket, key=key, chunk_size=chunk_size) == file_content
