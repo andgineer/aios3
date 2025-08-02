@@ -5,9 +5,9 @@
 | Name                       |    Stmts |     Miss |   Cover |   Missing |
 |--------------------------- | -------: | -------: | ------: | --------: |
 | src/aios3/\_\_about\_\_.py |        1 |        1 |      0% |         1 |
-| src/aios3/file.py          |       28 |        0 |    100% |           |
+| src/aios3/file.py          |       34 |        7 |     79% |76-78, 89-92 |
 | src/aios3/stream\_iter.py  |       22 |        2 |     91% |     74-76 |
-|                  **TOTAL** |   **51** |    **3** | **94%** |           |
+|                  **TOTAL** |   **57** |   **10** | **82%** |           |
 
 
 ## Setup coverage badge
