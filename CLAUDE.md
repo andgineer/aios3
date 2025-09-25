@@ -52,7 +52,7 @@ pylint src/               # Additional linting
 # Build and serve English documentation
 make docs
 
-# Build and serve Russian documentation  
+# Build and serve Russian documentation
 make docs-ru
 ```
 

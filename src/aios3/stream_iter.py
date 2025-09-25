@@ -2,7 +2,7 @@
 
 import io
 from array import array
-from typing import Iterable, Iterator, Optional, Union
+from collections.abc import Iterable, Iterator
 
 
 class StreamFromIter(io.RawIOBase):
@@ -21,17 +21,14 @@ class StreamFromIter(io.RawIOBase):
 
     def __init__(
         self,
-        source: Union[  # type: ignore
-            Iterator[Union[bytearray, array]],
-            Iterable[Union[bytearray, array]],
-        ],
+        source: Iterator[bytearray | array] | Iterable[bytearray | array],
     ):
         """Implement Python io stream protocol.
 
         Args:
             source: iterable or iterator that produce bytes.
         """
-        self.leftover: Optional[Union[bytearray, array]] = None  # type: ignore
+        self.leftover: bytearray | array | None = None  # type: ignore
         self.iterator = source if isinstance(source, Iterator) else iter(source)
         super().__init__()
 
@@ -43,7 +40,7 @@ class StreamFromIter(io.RawIOBase):
         """
         return True
 
-    def readinto(self, allocated_buffer: Union[bytearray, array]) -> int:  # type: ignore
+    def readinto(self, allocated_buffer: bytearray | array) -> int:  # type: ignore
         """Implement abstract method in io.RawIOBase.
 
         Read bytes into a pre-allocated, writable bytes-like object b,

@@ -15,7 +15,7 @@ on:
 jobs:
   static:
     env:
-      PRIMARY_PYTHON_VERSION: '3.11'
+      PRIMARY_PYTHON_VERSION: '3.12'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

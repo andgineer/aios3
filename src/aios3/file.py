@@ -1,7 +1,8 @@
 """S3 "files" operations with aiobotocore."""
 
 import io
-from typing import IO, AsyncGenerator, Optional
+from collections.abc import AsyncGenerator
+from typing import IO
 
 from aiobotocore.session import AioBaseClient, get_session
 from botocore.exceptions import ClientError
@@ -10,7 +11,10 @@ from aios3.stream_iter import StreamFromIter
 
 
 async def save(  # pylint: disable= invalid-name
-    bucket: str, key: str, body: bytes, s3: Optional[AioBaseClient] = None
+    bucket: str,
+    key: str,
+    body: bytes,
+    s3: AioBaseClient | None = None,
 ) -> None:
     """Create the file with the `body`.
 
@@ -34,8 +38,8 @@ async def save(  # pylint: disable= invalid-name
 async def read(  # pylint: disable= invalid-name
     bucket: str,
     key: str,
-    chunk_size: Optional[int] = None,
-    s3: Optional[AioBaseClient] = None,
+    chunk_size: int | None = None,
+    s3: AioBaseClient | None = None,
 ) -> bytes:
     """Read the full content of the file as bytes.
 
@@ -56,17 +60,20 @@ async def read(  # pylint: disable= invalid-name
         [
             chunk
             async for chunk in chunks(
-                bucket=bucket, key=key, chunk_size=chunk_size, s3=s3
+                bucket=bucket,
+                key=key,
+                chunk_size=chunk_size,
+                s3=s3,
             )
-        ]
+        ],
     )
 
 
 async def chunks(  # pylint: disable= invalid-name
     bucket: str,
     key: str,
-    chunk_size: Optional[int] = None,
-    s3: Optional[AioBaseClient] = None,
+    chunk_size: int | None = None,
+    s3: AioBaseClient | None = None,
 ) -> AsyncGenerator[bytearray, None]:
     """Generate file chunks `chunk_size` bytes max.
 
@@ -109,8 +116,8 @@ async def chunks(  # pylint: disable= invalid-name
 async def stream(  # pylint: disable= invalid-name
     bucket: str,
     key: str,
-    chunk_size: Optional[int] = None,
-    s3: Optional[AioBaseClient] = None,
+    chunk_size: int | None = None,
+    s3: AioBaseClient | None = None,
 ) -> IO[bytes]:
     """Create file-like object to stream the file content.
 
@@ -134,7 +141,6 @@ async def stream(  # pylint: disable= invalid-name
     # a synchronous iterator, but our chunks() function is an async generator.
     # For memory-efficient streaming, use chunks() directly instead of stream().
     file_chunks = [
-        chunk
-        async for chunk in chunks(bucket=bucket, key=key, chunk_size=chunk_size, s3=s3)
+        chunk async for chunk in chunks(bucket=bucket, key=key, chunk_size=chunk_size, s3=s3)
     ]
     return io.BufferedReader(StreamFromIter(file_chunks))
