@@ -12,8 +12,10 @@ The project uses UV for dependency management and virtual environment handling:
 
 ```bash
 # Source the activation script to set up or activate the development environment
-. ./activate.sh
+source ./activate.sh
 ```
+
+**IMPORTANT**: Always activate the virtual environment before running any commands. Use `source ./activate.sh` before each command.
 
 This script:
 - Creates a virtual environment using Python 3.11 if it doesn't exist
@@ -25,13 +27,13 @@ This script:
 ### Testing
 ```bash
 # Run all tests with pytest (use python -m pytest for proper module loading)
-python -m pytest -v
+source ./activate.sh && python -m pytest -v
 
 # Run tests with coverage
-python -m pytest --cov
+source ./activate.sh && python -m pytest --cov
 
 # Run specific test file
-python -m pytest tests/test_aios3_file.py -v
+source ./activate.sh && python -m pytest tests/test_aios3_file.py -v
 
 # Tests include doctests (configured in pytest.ini)
 ```
@@ -39,39 +41,36 @@ python -m pytest tests/test_aios3_file.py -v
 ### Code Quality
 ```bash
 # Run pre-commit hooks (includes ruff, mypy, pylint)
-pre-commit run --all-files
-
-# Individual tools:
-ruff check --fix          # Linting and formatting
-mypy src/                 # Type checking
-pylint src/               # Additional linting
+source ./activate.sh && pre-commit run --all-files
 ```
+
+**IMPORTANT**: Always use `pre-commit run --all-files` for code quality checks. Never run ruff, mypy, or pylint directly.
 
 ### Documentation
 ```bash
 # Build and serve English documentation
-make docs
+source ./activate.sh && make docs
 
 # Build and serve Russian documentation
-make docs-ru
+source ./activate.sh && make docs-ru
 ```
 
 ### Version Management
 ```bash
 # Bump version for bug fix
-make ver-bug
+source ./activate.sh && make ver-bug
 
 # Bump version for feature
-make ver-feature
+source ./activate.sh && make ver-feature
 
 # Bump version for release
-make ver-release
+source ./activate.sh && make ver-release
 ```
 
 ### Dependency Management
 ```bash
 # Upgrade all dependencies including pre-commit hooks
-make reqs
+source ./activate.sh && make reqs
 ```
 
 ## Code Architecture
