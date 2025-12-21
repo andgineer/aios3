@@ -3,8 +3,6 @@
 # Create docs in site/
 #
 
-./scripts/docstrings.sh
-
 for lang in en ru; do  # en should be the first language as it clears the root of the site
     scripts/docs-render-config.sh $lang
     if [ $lang != "en" ]; then

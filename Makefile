@@ -36,7 +36,6 @@ reqs:
 .PHONY: docs # mark as phony so it always runs even we have a docs folder
 .HELP: docs  ## Docs preview for the language specified (bg de en es fr ru), like "make docs ru", by default build for English
 docs:
-	./scripts/docstrings.sh
 	@LANG="$(if $(DOCS_LANGUAGE),$(DOCS_LANGUAGE),en)"; \
 	bash ./scripts/docs-render-config.sh "$$LANG"; \
 	if [ "$$LANG" != "en" ]; then \
