@@ -45,9 +45,8 @@ dev-dependencies = [
     "pytest-cov",
     "coveralls",
     "pre-commit",
-    "mypy",
-    "pylint",
     "hatchling>=1.27.0",
+    "pyrefly>=0.46.0",
 ]
 
 [tool.uv.sources]

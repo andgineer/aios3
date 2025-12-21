@@ -12,25 +12,22 @@ site_dir: '../site/SITE_PREFIX'
 
 plugins:
   - awesome-pages
-  - search:
-      lang: LANGUAGE
   - mkdocstrings:
       handlers:
         python:
-          paths: [ ../src ]
+          paths: [../src]
           options:
             allow_inspection: false
             show_bases: true
             heading_level: 2
             show_root_heading: true
             show_source: false
-            show_csource_code: true
             show_root_members_full_path: false
             show_object_full_path: true
             show_category_heading: true
             show_symbol_type_heading: true
             show_symbol_type_toc: true
-            docstring_style: numpy
+            docstring_style: google
             filters:
               - "!^_"
             show_signature: true
@@ -41,14 +38,19 @@ plugins:
             group_by_category: true
             show_if_no_docstring: true
             annotations_path: brief
+  - search:
+      lang: LANGUAGE
 
 markdown_extensions:
   - abbr
   - attr_list
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.snippets:
-      base_path: 'docs'
+      base_path: 'docs/includes'
+  - admonition
 
 theme:
   name: material
@@ -65,3 +67,8 @@ extra:
     - name: Русский
       link: /aios3/ru/
       lang: ru
+
+nav:
+  - index.md
+  - reference.md
+
