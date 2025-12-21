@@ -7,7 +7,7 @@
 | src/aios3/\_\_about\_\_.py |        1 |        1 |      0% |         1 |
 | src/aios3/file.py          |       36 |       10 |     72% |33-35, 97-99, 110-113 |
 | src/aios3/stream\_iter.py  |       22 |        2 |     91% |     71-73 |
-|                  **TOTAL** |   **59** |   **13** | **78%** |           |
+| **TOTAL**                  |   **59** |   **13** | **78%** |           |
 
 
 ## Setup coverage badge
